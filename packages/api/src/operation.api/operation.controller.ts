@@ -20,7 +20,8 @@ import { OperationCreateDto, OperationReadDto } from './operation.dto';
     },
     query: {
         maxLimit: 100,
-        alwaysPaginate: true
+        alwaysPaginate: true,
+        sort: [{ field: 'createdOn', order: 'DESC' }]
     },
     routes: {
         only: ['createOneBase', 'getManyBase', 'getOneBase']

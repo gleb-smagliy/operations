@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { CssBaseline } from '@material-ui/core';
 import { ApiProvider } from '@reduxjs/toolkit/query/react';
-import { operationsApi } from './api';
+import { operationsApi } from './services/operations';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';

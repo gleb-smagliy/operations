@@ -8,7 +8,7 @@
     "prebuild": "rimraf dist",
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
-    "start": "yarn start:api || yarn start:processing",
+    "start": "yarn start:api & yarn start:processing",
     "start:api": "nest start --config=nest-cli.api.json",
     "start:processing": "nest start --config=nest-cli.processing.json",
     "start:dev": "nest start --watch",

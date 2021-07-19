@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, CreateDateColumn, Column } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, CreateDateColumn, Column, Index } from 'typeorm';
 import { AggregateRoot } from '@nestjs/cqrs';
 import { OperationProcessed } from './operation-processed.event';
 
@@ -22,6 +22,7 @@ export class Operation extends AggregateRoot {
     name: string
 
     @CreateDateColumn()
+    @Index()
     createdOn: number
 
     @Column({

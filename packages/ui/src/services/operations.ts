@@ -7,7 +7,8 @@ export const operationsApi = createApi({
     tagTypes: ['OPERATIONS'],
     endpoints: builder => ({ 
       getOperations: builder.query({
-        async queryFn(...args: Parameters<typeof api.operation.getManyOperations>) {
+        async queryFn(...args: Parameters<typeof api.operation.getManyOperations>) 
+        {
           try {
             const { data } = await api.operation.getManyOperations(...args);
 
