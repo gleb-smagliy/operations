@@ -14,17 +14,15 @@ function getRandomStatus() {
 
 @CommandHandler(ProcessOperations)
 export class ProcessOperationsCommandHandler implements ICommandHandler<ProcessOperations> {
-    private readonly logger = new Logger(ProcessOperationsCommandHandler.name);
-
     constructor(
         @InjectRepository(Operation) private readonly repository: Repository<Operation>,
-        private readonly eventPublisher: EventPublisher
+        private readonly eventPublisher: EventPublisher,
+        private readonly logger: Logger
     ) {}
 
     async execute(cmd: ProcessOperations) {
-        const date = new Date(Date.now() - cmd.timeOffset * 1000).toISOString();
+        const date = cmd.olderThan.toISOString();
         this.logger.debug(`Marking operations older than ${date} as processed`);
-        this.eventPublisher.mergeClassContext(Operation);
 
         const operations = await this.repository.createQueryBuilder("operation")
             .where('operation.createdOn < :date', { date })
@@ -36,6 +34,7 @@ export class ProcessOperationsCommandHandler implements ICommandHandler<ProcessO
 
         operations.forEach(op => {
             const toStatus = getRandomStatus();
+            this.eventPublisher.mergeObjectContext(op);
             op.process(toStatus);
             op.commit();
             this.logger.debug(`Marked operation ${op.id} as ${toStatus}`);

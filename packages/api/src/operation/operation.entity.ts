@@ -33,6 +33,8 @@ export class Operation extends AggregateRoot {
 
 
     process(toStatus: OperationStatus) {
+        if(this.status == toStatus) return;
+
         this.status = toStatus;
         this.apply(new OperationProcessed(this.id, this.status));
     }

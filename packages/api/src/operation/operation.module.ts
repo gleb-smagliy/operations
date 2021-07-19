@@ -1,4 +1,4 @@
-import { Module, Global } from "@nestjs/common";
+import { Module, Global, Logger } from "@nestjs/common";
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { CqrsModule } from '@nestjs/cqrs';
 
@@ -11,7 +11,7 @@ const typeOrmModule = TypeOrmModule.forFeature([Operation]);
 @Global()
 @Module({
   imports: [typeOrmModule, CqrsModule],
-  providers: [OperationService, ProcessOperationsCommandHandler],
+  providers: [Logger, OperationService, ProcessOperationsCommandHandler],
   exports: [OperationService, typeOrmModule, CqrsModule],
 })
 export class OperationModule {}
