@@ -1,7 +1,6 @@
 import { Controller } from "@nestjs/common";
 import { Crud, CrudController } from '@nestjsx/crud';
-import { Operation } from './operation.entity';
-import { OperationService } from './operation.service';
+import { Operation, OperationService } from '../operation';
 import { OperationCreateDto, OperationReadDto } from './operation.dto';
 
 @Crud({

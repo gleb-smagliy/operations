@@ -1,10 +1,11 @@
-import { Operation, CONSTRAINTS, OperationStatus } from './operation.entity';
+import { Operation, CONSTRAINTS, OperationStatus } from '../operation';
 import { MaxLength } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 import { Expose } from 'class-transformer';
+import { ToDto } from './toDto.util';
 
 export class OperationCreateDto 
-    implements Omit<Operation, 'id' | 'createdOn' | 'status'>
+    implements Omit<ToDto<Operation>, 'id' | 'createdOn' | 'status'>
 {
     @ApiProperty()
     @MaxLength(CONSTRAINTS.NAME_LENGTH)
@@ -13,6 +14,7 @@ export class OperationCreateDto
 }
 
 export class OperationReadDto
+    implements Omit<ToDto<Operation>, 'createdOn'>
 {
     @ApiProperty()
     @Expose()

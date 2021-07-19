@@ -1,2 +1,4 @@
 export { OperationService } from './operation.service';
-export { Operation, OperationStatus } from './operation.entity';
+export { OperationModule } from './operation.module';
+export { Operation, OperationStatus, CONSTRAINTS } from './operation.entity';
+export { ProcessOperations } from './process-operation.command';

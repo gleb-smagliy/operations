@@ -1,7 +1,8 @@
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Module } from '@nestjs/common';
+import { Module, Global } from '@nestjs/common';
 import dbConfig from './database.config';
 
+@Global()
 @Module({
     imports: [TypeOrmModule.forRoot(dbConfig)]
 })

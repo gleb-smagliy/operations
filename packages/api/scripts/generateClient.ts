@@ -2,7 +2,7 @@ import { generateApi } from 'swagger-typescript-api';
 import { NestFactory } from '@nestjs/core';
 import { SwaggerModule, DocumentBuilder, OpenAPIObject, } from '@nestjs/swagger';
 import { Spec, Operation } from 'swagger-schema-official';
-import { AppModule } from '../src/app.module';
+import { ApiModule } from '../src/api.module';
 import yargs from 'yargs';
 import * as path from 'path';
 
@@ -50,7 +50,7 @@ const prettifyOperationsId = (spec: Spec): Spec => {
 
 // generates swagger spec object from a set of swagger controllers registered in the AppModule
 export const generateSpec = async (): Promise<Spec> => {
-    const app = await NestFactory.create(AppModule);
+    const app = await NestFactory.create(ApiModule);
 
     const config = new DocumentBuilder()
         .setVersion('1.0')

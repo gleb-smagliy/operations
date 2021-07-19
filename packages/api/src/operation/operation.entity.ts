@@ -1,4 +1,7 @@
 import { Entity, PrimaryGeneratedColumn, CreateDateColumn, Column } from 'typeorm';
+import { AggregateRoot } from '@nestjs/cqrs';
+import { OperationProcessed } from './operation-processed.event';
+
 
 export const CONSTRAINTS = {
     NAME_LENGTH: 128
@@ -11,7 +14,7 @@ export enum OperationStatus {
 }
 
 @Entity()
-export class Operation {
+export class Operation extends AggregateRoot {
     @PrimaryGeneratedColumn('uuid')
     id: string;
 
@@ -19,7 +22,7 @@ export class Operation {
     name: string
 
     @CreateDateColumn()
-    createdOn: Date
+    createdOn: number
 
     @Column({
         type: "varchar",
@@ -27,5 +30,11 @@ export class Operation {
         default: OperationStatus.InProgress
     })
     status: OperationStatus
+
+
+    process(toStatus: OperationStatus) {
+        this.status = toStatus;
+        this.apply(new OperationProcessed(this.id, this.status));
+    }
 }
 
