@@ -1,13 +1,15 @@
 import { createApi, fakeBaseQuery } from '@reduxjs/toolkit/query/react';
 import { api } from './api';
 
+const fn1 = api.operation.getManyOperations;
+
 export const operationsApi = createApi({
     reducerPath: 'operationsApi',
     baseQuery: fakeBaseQuery(),
     tagTypes: ['OPERATIONS'],
     endpoints: builder => ({ 
       getOperations: builder.query({
-        async queryFn(...args: Parameters<typeof api.operation.getManyOperations>) 
+        async queryFn(...args: Parameters<typeof api.operation.getManyOperations>)
         {
           try {
             const { data } = await api.operation.getManyOperations(...args);
@@ -26,7 +28,7 @@ export const operationsApi = createApi({
       createOperation: builder.mutation({
         async queryFn(...args: Parameters<typeof api.operation.createOneOperation>) {
             try {
-                const { data } = await api.operation.createOneOperation(...args);
+                const { data } = await api.operation.createOneOperation(args[0]);
 
                 return { data };
             }

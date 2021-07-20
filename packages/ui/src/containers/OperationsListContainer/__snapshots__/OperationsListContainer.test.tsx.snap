@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<OperationsListContainer /> should render a single item with a title and a status 1`] = `
+<tr
+  aria-label="operation"
+  class="MuiTableRow-root"
+>
+  <th
+    class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeSmall"
+    role="cell"
+    scope="row"
+  >
+    operationsResponse1
+  </th>
+  <td
+    class="MuiTableCell-root MuiTableCell-body MuiTableCell-alignRight MuiTableCell-sizeSmall"
+  >
+    Done
+  </td>
+</tr>
+`;

@@ -10,7 +10,7 @@ import TablePagination from '@material-ui/core/TablePagination';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import { CreateOperationModalContainer } from '../containers/CreateOperationModalContainer';
+import { CreateOperationModal } from './CreateOperationModal';
 
 interface OperationsListProps {
     operations: OperationReadDto[]
@@ -32,19 +32,19 @@ export function OperationsList({ operations, pageResult, perPage, changePage, on
                     page={pageResult.page - 1}
                     onPageChange={(_, pageNumber) => changePage(pageNumber)}
                 />
-                <CreateOperationModalContainer onCreated={onCreated} />
+                <CreateOperationModal onCreated={onCreated} />
             </Grid>
             <TableContainer component={Paper}>
                 <Table size="small" aria-label="operations list table">
-                    <TableHead>
-                    <TableRow>
-                        <TableCell>Operation</TableCell>
-                        <TableCell align="right">Status</TableCell>
-                    </TableRow>
+                    <TableHead aria-label="operations list head">
+                        <TableRow>
+                            <TableCell>Operation</TableCell>
+                            <TableCell align="right">Status</TableCell>
+                        </TableRow>
                     </TableHead>
                     <TableBody>
                     {operations.map((op) => (
-                        <TableRow key={op.id}>
+                        <TableRow key={op.id} aria-label="operation">
                             <TableCell component="th" scope="row">
                                 {op.name}
                             </TableCell>

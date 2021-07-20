@@ -1,3 +1,3 @@
 export function Error({ error }: { error: unknown }) {
-    return <div>Error: ${error}</div>
+    return <div>Error: {error}</div>
 }
