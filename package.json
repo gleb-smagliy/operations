@@ -4,6 +4,10 @@
   "devDependencies": {
     "lerna": "^4.0.0"
   },
+  "scripts": {
+    "start:api": "yarn workspace @operations/api start:api & yarn workspace @operations/api start:processing",
+    "start:ui": "yarn workspace @operations/ui start"
+  },
   "workspaces": {
     "nohoist": [
       "**/api",

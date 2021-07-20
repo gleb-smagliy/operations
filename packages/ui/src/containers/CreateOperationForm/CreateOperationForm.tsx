@@ -34,29 +34,31 @@ export function CreateOperationForm({
             <form noValidate autoComplete="off">
                 <TextField
                     label="Name"
+                    autoFocus
                     aria-label="operation name"
                     value={operation.name}
                     onChange={changeName}
                     fullWidth
                 />
-                {error && <Error error="Something went wrong"/>}
+                {error && <Error error="Something went wrong"/>}  
+                <Grid container direction="row" justifyContent="flex-end" alignItems="center">
+                    <Button
+                        aria-label="cancel creation"
+                        onClick={onCancel}
+                    >
+                        Cancel
+                    </Button>
+                    <Button
+                        aria-label="create operation"
+                        type="submit"
+                        color="primary"
+                        onClick={handleSubmit}
+                        disabled={isLoading || operation.name.length === 0}
+                    >
+                        Create
+                    </Button>
+                </Grid>
             </form>
-            <Grid container direction="row" justifyContent="flex-end" alignItems="center">
-                <Button
-                    aria-label="cancel creation"
-                    onClick={onCancel}
-                >
-                    Cancel
-                </Button>
-                <Button
-                    aria-label="create operation"
-                    color="primary"
-                    onClick={handleSubmit}
-                    disabled={isLoading || operation.name.length == 0}
-                >
-                    Create
-                </Button>
-            </Grid>
         </>
     )
 }

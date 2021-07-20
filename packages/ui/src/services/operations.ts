@@ -1,8 +1,6 @@
 import { createApi, fakeBaseQuery } from '@reduxjs/toolkit/query/react';
 import { api } from './api';
 
-const fn1 = api.operation.getManyOperations;
-
 export const operationsApi = createApi({
     reducerPath: 'operationsApi',
     baseQuery: fakeBaseQuery(),

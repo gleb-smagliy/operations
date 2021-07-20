@@ -20,6 +20,7 @@ describe('<CreateOperationForm />', () => {
   });
 
   it('should submit operation', async () => {
+    jest.spyOn(global.console, 'error').mockImplementationOnce(() => {});
     const name = 'New operation 123';
     const onSubmit = jest.fn();
     (api.operation.createOneOperation as jest.Mock).mockResolvedValue({ id: '123' });

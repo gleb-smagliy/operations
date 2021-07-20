@@ -20,7 +20,7 @@ export function OperationsListContainer() {
         <CreateOperationModal onCreated={setFirstPage}/>
     );
     
-    if(operations.length == 0 || !pageResult) {
+    if(operations.length === 0 || !pageResult) {
         return <EmptyList createOperationButton={createOperationButton} />;
     }
 

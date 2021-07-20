@@ -11,14 +11,13 @@ export function useOperationsPolling(perPage: number, page: number) {
     const options = { pollingInterval: shouldPoll ? 5000 : undefined };
 
     const { data: pageResult, isLoading, error } = useGetOperationsQuery(params, options);
-    const operations = (pageResult?.data || []);
 
     useEffect(() => {
-        setShouldPoll(operations.some(op => op.status == 'InProgress'));
+        setShouldPoll((pageResult?.data || []).some(op => op.status === 'InProgress'));
 
         return () => setShouldPoll(false);
     },
-    [operations]);
+    [pageResult]);
 
-    return { pageResult, operations, isLoading, error };
+    return { pageResult, operations: (pageResult?.data || []), isLoading, error };
 }
